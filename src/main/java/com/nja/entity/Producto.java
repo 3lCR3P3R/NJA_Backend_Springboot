@@ -22,6 +22,9 @@ public class Producto {
 	@Column(name = "po_marca")
     private String marca;
 	
+	@Column(name = "po_color")
+    private String color;
+	
 	@Column(name = "po_precio")
     private Double precio;
 	
@@ -33,6 +36,9 @@ public class Producto {
 	
 	@Column(name = "po_imagen")
     private String imagen;
+	
+	@Column(name = "po_descripcion")
+    private String descripcion;
 	
 	@Column(name = "po_activo")
     private String activo;
@@ -60,6 +66,14 @@ public class Producto {
 
 	public void setMarca(String marca) {
 		this.marca = marca;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 	public Double getPrecio() {
@@ -92,6 +106,14 @@ public class Producto {
 
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public String getActivo() {

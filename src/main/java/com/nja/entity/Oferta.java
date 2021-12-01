@@ -22,12 +22,24 @@ public class Oferta {
 
 	@Column(name = "of_nombre")
 	private String nombre;
+	
+	@Column(name = "of_marca")
+    private String marca;
+	
+	@Column(name = "of_color")
+    private String color;
+	
+	@Column(name = "of_descuento")
+	private Integer descuento;
 
 	@Column(name = "of_precio")
 	private Double precio;
 
 	@Column(name = "of_precio_descuento")
 	private Double precioDescuento;
+	
+	@Column(name = "of_categoria")
+    private String categoria;
 
 	@Column(name = "of_cantidad")
 	private Integer cantidad;
@@ -37,6 +49,9 @@ public class Oferta {
 
 	@Column(name = "of_imagen")
 	private String imagen;
+	
+	@Column(name = "of_descripcion")
+    private String descripcion;
 
 	@Column(name = "of_activo")
 	private String activo;
@@ -58,6 +73,30 @@ public class Oferta {
 		this.nombre = nombre;
 	}
 
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public Integer getDescuento() {
+		return descuento;
+	}
+
+	public void setDescuento(Integer descuento) {
+		this.descuento = descuento;
+	}
+
 	public Double getPrecio() {
 		return precio;
 	}
@@ -72,6 +111,14 @@ public class Oferta {
 
 	public void setPrecioDescuento(Double precioDescuento) {
 		this.precioDescuento = precioDescuento;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 
 	public Integer getCantidad() {
@@ -96,6 +143,14 @@ public class Oferta {
 
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public String getActivo() {
