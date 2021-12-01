@@ -29,7 +29,7 @@ public class ProductoController {
 		return this.ProductoService.getProducto(id);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/{ct}/categoria")
+	@RequestMapping(method = RequestMethod.GET, value = "/categoria/{ct}")
 	public List<Producto> getProductosCategoria(@PathVariable("ct") String categoria) {
 		return this.ProductoService.getProductosCategoria(categoria);
 	}
