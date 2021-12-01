@@ -15,32 +15,32 @@ import com.nja.service.ProductoService;
 @RestController
 @RequestMapping("/productos")
 public class ProductoController {
-	
+
 	@Autowired
 	private ProductoService ProductoService;
-	
+
 	@RequestMapping(method = RequestMethod.GET)
-	public List<Producto> getProductos(){
+	public List<Producto> getProductos() {
 		return this.ProductoService.getProductos();
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
-	public Producto getProducto(@PathVariable("id") Integer id){
+	public Producto getProducto(@PathVariable("id") Integer id) {
 		return this.ProductoService.getProducto(id);
 	}
-	
-	@RequestMapping(method = RequestMethod.GET, value = "cat/{ct}")
-	public List<Producto> getProductosCategoria(@PathVariable("ct") String categoria){
+
+	@RequestMapping(method = RequestMethod.GET, value = "/{ct}/categoria")
+	public List<Producto> getProductosCategoria(@PathVariable("ct") String categoria) {
 		return this.ProductoService.getProductosCategoria(categoria);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST)
-	public Producto addProducto(@RequestBody Producto producto){
+	public Producto addProducto(@RequestBody Producto producto) {
 		return this.ProductoService.addProducto(producto);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.PUT)
-	public Producto editProducto(@RequestBody Producto producto){
+	public Producto editProducto(@RequestBody Producto producto) {
 		return this.ProductoService.editProducto(producto);
 	}
 
