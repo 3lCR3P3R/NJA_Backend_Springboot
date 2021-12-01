@@ -33,6 +33,11 @@ public class ProductoServiceImpl implements ProductoService {
 	}
 
 	@Override
+	public List<Producto> getProductosCategoria(String categoria) {
+		return this.productoRepository.getByCategoria(categoria);
+	}
+
+	@Override
 	public Producto addProducto(Producto producto) {
 		return this.productoRepository.save(producto);
 	}

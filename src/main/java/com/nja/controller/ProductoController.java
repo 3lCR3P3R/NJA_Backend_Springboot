@@ -29,6 +29,11 @@ public class ProductoController {
 		return this.ProductoService.getProducto(id);
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, value = "cat/{ct}")
+	public List<Producto> getProductosCategoria(@PathVariable("ct") String categoria){
+		return this.ProductoService.getProductosCategoria(categoria);
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public Producto addProducto(@RequestBody Producto producto){
 		return this.ProductoService.addProducto(producto);

@@ -34,26 +34,34 @@ public class UsuarioController {
 		if(u == null) {
 			return new UsuarioUtil();
 		} else {
-			UsuarioUtil usuarioUtil = new UsuarioUtil();
-			usuarioUtil.setId(u.getId());
-			usuarioUtil.setUsuario(u.getUsuario());
-			usuarioUtil.setCorreo(u.getCorreo());
+			String activo = u.getActivo() + ".";  
+			if(activo.equals("S.")) {
+				UsuarioUtil usuarioUtil = new UsuarioUtil();
+				
+				usuarioUtil.setId(u.getId());
+				usuarioUtil.setUsuario(u.getUsuario());
+				usuarioUtil.setCorreo(u.getCorreo());
+				usuarioUtil.setRol(u.getRol());
+				
+				
+				long tiempo = System.currentTimeMillis();
+				String token = Jwts.builder()
+						           .signWith(SignatureAlgorithm.HS256, RequestFilter.KEY)
+						           .setSubject(u.getUsuario())
+						           .setIssuedAt(new Date(tiempo))
+						           .setExpiration(new Date(tiempo + 900000))
+						           .claim("username", u.getUsuario())
+						           .claim("correo", u.getCorreo())
+						           .claim("id", u.getId())
+						           .compact();
+						           
 			
-			
-			long tiempo = System.currentTimeMillis();
-			String token = Jwts.builder()
-					           .signWith(SignatureAlgorithm.HS256, RequestFilter.KEY)
-					           .setSubject(u.getUsuario())
-					           .setIssuedAt(new Date(tiempo))
-					           .setExpiration(new Date(tiempo + 900000))
-					           .claim("username", u.getUsuario())
-					           .claim("correo", u.getCorreo())
-					           .claim("id", u.getId())
-					           .compact();
-					           
-		
-			usuarioUtil.setToken(token);
-			return usuarioUtil;
+				usuarioUtil.setToken(token);
+				return usuarioUtil;
+				
+			} else {
+				return new UsuarioUtil();
+			}
 		} 
 	}
 

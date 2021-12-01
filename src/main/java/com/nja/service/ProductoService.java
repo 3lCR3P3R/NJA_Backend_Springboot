@@ -11,6 +11,7 @@ public interface ProductoService {
 
 	List<Producto> getProductos();
 	Producto getProducto(Integer id);
+	List<Producto> getProductosCategoria(String categoria);
 	Producto addProducto(Producto producto);
 	Producto editProducto(Producto producto);
 }

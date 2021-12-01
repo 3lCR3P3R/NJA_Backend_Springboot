@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-12-2021 a las 01:24:32
+-- Tiempo de generación: 01-12-2021 a las 21:54:29
 -- Versión del servidor: 10.1.40-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -94,7 +94,8 @@ INSERT INTO `contactenos` (`co_id`, `co_nombre`, `co_email`, `co_asunto`, `co_me
 (2, 'Matias', 'matias@gmail.com', 'Importante', 'Alguna vez haz sido tu propio jefe?', 'N'),
 (3, 'Matias', 'matias@gmail.com', 'Importante', 'Alguna vez haz sido tu propio jefe?', 'N'),
 (4, 'Valentino', 'vltn@gmail.com', 'Protocolo', 'Pues que te digo mami', 'N'),
-(5, 'Martin elias', 'XD@gmail.com', 'Hola que tal', 'xddddd', 'N');
+(5, 'Martin elias', 'XD@gmail.com', 'Hola que tal', 'xddddd', 'N'),
+(6, 'Andres', 'andres@gmail.com', 'La patria', 'Quieres ser tu propio jefe?', 'N');
 
 -- --------------------------------------------------------
 
@@ -104,17 +105,10 @@ INSERT INTO `contactenos` (`co_id`, `co_nombre`, `co_email`, `co_asunto`, `co_me
 
 CREATE TABLE `ofertas` (
   `of_id` int(11) NOT NULL,
-  `of_nombre` varchar(200) NOT NULL,
-  `of_marca` varchar(100) NOT NULL DEFAULT 'NJA',
-  `of_color` varchar(50) NOT NULL DEFAULT 'Negro',
+  `po_id` int(11) NOT NULL,
   `of_descuento` smallint(3) NOT NULL DEFAULT '20',
-  `of_precio` double NOT NULL,
   `of_precio_descuento` double NOT NULL,
-  `of_categoria` varchar(80) NOT NULL DEFAULT 'Camisas',
-  `of_cantidad` int(11) NOT NULL,
   `of_fecha_maxima` date NOT NULL,
-  `of_imagen` varchar(200) NOT NULL DEFAULT 'default.png',
-  `of_descripcion` varchar(100) NOT NULL,
   `of_activo` varchar(1) NOT NULL DEFAULT 'S'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -122,11 +116,11 @@ CREATE TABLE `ofertas` (
 -- Volcado de datos para la tabla `ofertas`
 --
 
-INSERT INTO `ofertas` (`of_id`, `of_nombre`, `of_marca`, `of_color`, `of_descuento`, `of_precio`, `of_precio_descuento`, `of_categoria`, `of_cantidad`, `of_fecha_maxima`, `of_imagen`, `of_descripcion`, `of_activo`) VALUES
-(1, 'Ralph Lauren', 'Ralph Lauren', 'Rojo', 35, 70000, 45500, 'Camisetas', 5, '2021-12-24', 'oferta1.jpg', 'Camiseta de algodón con cuello barco', 'S'),
-(2, 'Lejame Tr', 'Lejame Tr', 'Cafe', 50, 150000, 75000, 'Camisetas', 5, '2021-12-25', 'oferta2.png', 'Conjunto de dos piezas', 'S'),
-(3, 'Alex Evenings', 'Alex Evenings', 'Azul marino', 35, 400000, 260000, 'Vestidos', 5, '2021-12-20', 'oferta3.jpg', 'Vestido de noche largo de lentejuelas con detalle de nudo en la parte delantera', 'S'),
-(4, 'Levis', 'Levi\'s Premium', 'Negro', 75, 100000, 25000, 'Pantalones', 5, '2021-11-29', 'oferta4.jpg', 'Pantalon recto de tiro alto', 'S');
+INSERT INTO `ofertas` (`of_id`, `po_id`, `of_descuento`, `of_precio_descuento`, `of_fecha_maxima`, `of_activo`) VALUES
+(1, 1, 35, 45500, '2021-12-24', 'S'),
+(2, 2, 50, 75000, '2021-12-25', 'S'),
+(3, 3, 35, 260000, '2021-12-20', 'S'),
+(4, 4, 75, 25000, '2021-11-29', 'S');
 
 -- --------------------------------------------------------
 
@@ -272,7 +266,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `contactenos`
 --
 ALTER TABLE `contactenos`
-  MODIFY `co_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `co_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `ofertas`
