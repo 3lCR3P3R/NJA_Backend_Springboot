@@ -25,9 +25,6 @@ public class Usuario {
 	@Column(name = "us_correo")
     private String correo;
 	
-	@Column(name = "us_telefono")
-    private String telefono;
-	
 	@Column(name = "us_rol")
     private Integer rol;
 	
@@ -65,14 +62,6 @@ public class Usuario {
 
 	public void setCorreo(String correo) {
 		this.correo = correo;
-	}
-
-	public String getTelefono() {
-		return telefono;
-	}
-
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
 	}
 
 	public Integer getRol() {

@@ -6,7 +6,6 @@ public class UsuarioUtil {
 	private String usuario;
 	private String password;
 	private String correo;
-	private String telefono;
 	private Integer rol;
 	private String activo;
 	private String token;
@@ -17,13 +16,12 @@ public class UsuarioUtil {
 	}
 
 
-	public UsuarioUtil(Integer id, String usuario, String password, String correo, String telefono, Integer rol, String activo, String token) {
+	public UsuarioUtil(Integer id, String usuario, String password, String correo, Integer rol, String activo, String token) {
 		super();
 		this.id = id;
 		this.usuario = usuario;
 		this.password = password;
 		this.correo = correo;
-		this.telefono = telefono;
 		this.rol = rol;
 		this.activo = activo;
 		this.token = token;
@@ -67,16 +65,6 @@ public class UsuarioUtil {
 
 	public void setCorreo(String correo) {
 		this.correo = correo;
-	}
-
-
-	public String getTelefono() {
-		return telefono;
-	}
-
-
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
 	}
 
 

@@ -41,7 +41,7 @@ public class RequestFilter implements Filter{
 		
 		String url = peticion.getRequestURI();
 		
-		if(url.contains("/usuarios/registrar") || url.contains("/usuarios/login") || url.contains("/categorias") || url.contains("/contactenos") || url.contains("/ofertas") || url.contains("/productos")) {
+		if(url.contains("/usuarios/registrar") || url.contains("/usuarios/login") || url.contains("/categorias") || url.contains("/contactenos") || url.contains("/ofertas") || url.contains("/productos/sf")) {
 			chain.doFilter(request, response);
 		}
 		else {

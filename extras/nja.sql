@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-12-2021 a las 21:54:29
+-- Tiempo de generación: 04-12-2021 a las 21:04:57
 -- Versión del servidor: 10.1.40-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -95,7 +95,9 @@ INSERT INTO `contactenos` (`co_id`, `co_nombre`, `co_email`, `co_asunto`, `co_me
 (3, 'Matias', 'matias@gmail.com', 'Importante', 'Alguna vez haz sido tu propio jefe?', 'N'),
 (4, 'Valentino', 'vltn@gmail.com', 'Protocolo', 'Pues que te digo mami', 'N'),
 (5, 'Martin elias', 'XD@gmail.com', 'Hola que tal', 'xddddd', 'N'),
-(6, 'Andres', 'andres@gmail.com', 'La patria', 'Quieres ser tu propio jefe?', 'N');
+(6, 'Andres', 'andres@gmail.com', 'La patria', 'Quieres ser tu propio jefe?', 'N'),
+(7, 'Elber', 'elb@gmail.com', 'Prueba', 'Esto es una prueba', 'N'),
+(8, 'Gabriel', 'gabriel@gmail.com', 'Angular', 'No se angular', 'N');
 
 -- --------------------------------------------------------
 
@@ -119,7 +121,7 @@ CREATE TABLE `ofertas` (
 INSERT INTO `ofertas` (`of_id`, `po_id`, `of_descuento`, `of_precio_descuento`, `of_fecha_maxima`, `of_activo`) VALUES
 (1, 1, 35, 45500, '2021-12-24', 'S'),
 (2, 2, 50, 75000, '2021-12-25', 'S'),
-(3, 3, 35, 260000, '2021-12-20', 'S'),
+(3, 3, 30, 260000, '2021-12-19', 'S'),
 (4, 4, 75, 25000, '2021-11-29', 'S');
 
 -- --------------------------------------------------------
@@ -130,12 +132,13 @@ INSERT INTO `ofertas` (`of_id`, `po_id`, `of_descuento`, `of_precio_descuento`, 
 
 CREATE TABLE `productos` (
   `po_id` int(11) NOT NULL,
+  `us_id` int(11) NOT NULL,
   `po_nombre` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `po_marca` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'NJA',
   `po_color` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Negro',
   `po_precio` double NOT NULL DEFAULT '10',
   `po_categoria` varchar(80) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Camisa',
-  `po_cantidad` int(1) NOT NULL DEFAULT '1',
+  `po_cantidad` int(2) NOT NULL DEFAULT '1',
   `po_imagen` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'default.jpg',
   `po_descripcion` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `po_activo` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'S'
@@ -145,11 +148,11 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`po_id`, `po_nombre`, `po_marca`, `po_color`, `po_precio`, `po_categoria`, `po_cantidad`, `po_imagen`, `po_descripcion`, `po_activo`) VALUES
-(1, 'Ralph Lauren', 'Ralph Lauren', 'Rojo', 70000, 'Camisetas', 50, 'producto1.jpg', 'Camiseta de algodón con cuello barco', 'S'),
-(2, 'Lejame Tr', 'Lejame Tr', 'Cafe', 150000, 'Camisetas', 50, 'producto2.png', 'Conjunto de dos piezas', 'S'),
-(3, 'Alex Evenings', 'Alex Evenings', 'Azul marino', 400000, 'Vestidos', 50, 'producto3.jpg', 'Vestido de noche largo de lentejuelas con detalle de nudo en la parte delantera', 'S'),
-(4, 'Levi\'s Premium', 'Levis', 'Negro', 100000, 'Pantalones', 1, 'producto4.jpg', 'Pantalon recto de tiro alto', 'S');
+INSERT INTO `productos` (`po_id`, `us_id`, `po_nombre`, `po_marca`, `po_color`, `po_precio`, `po_categoria`, `po_cantidad`, `po_imagen`, `po_descripcion`, `po_activo`) VALUES
+(1, 2, 'Ralph Lauren', 'Ralph Lauren', 'Rojo', 70000, 'Camisetas', 50, 'producto1.jpg', 'Camiseta de algodón con cuello barco', 'S'),
+(2, 10, 'Lejame Tr', 'Lejame Tr', 'Cafe', 150000, 'Camisetas', 50, 'producto2.png', 'Conjunto de dos piezas', 'S'),
+(3, 10, 'Alex Evenings', 'Alex Evenings', 'Azul marino', 400000, 'Vestidos', 50, 'producto3.jpg', 'Vestido de noche largo de lentejuelas con detalle de nudo en la parte delantera', 'S'),
+(4, 2, 'Levi\'s Premium', 'Levis', 'Negro', 100000, 'Pantalones', 50, 'producto4.jpg', 'Pantalon recto de tiro alto', 'S');
 
 -- --------------------------------------------------------
 
@@ -182,7 +185,6 @@ CREATE TABLE `usuarios` (
   `us_usuario` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `us_password` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `us_correo` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `us_telefono` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `us_rol` int(11) NOT NULL,
   `us_activo` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'S'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -191,14 +193,15 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`us_id`, `us_usuario`, `us_password`, `us_correo`, `us_telefono`, `us_rol`, `us_activo`) VALUES
-(2, 'Matthew', '12345', 'Matthew@gmail.com', '3132254784', 1, 'S'),
-(3, 'Fernanda', '54321', 'Fernanda@gmail.com', '3182254785', 1, 'S'),
-(4, 'Jorge', '12345', 'jorge@gmail.com', '3152254784', 2, 'S'),
-(5, 'Raul', '54321', 'raul@gmail.com', '3202254785', 2, 'S'),
-(6, 'Ricardo', '12345', 'ricardo@gmail.com', '3212254784', 3, 'S'),
-(7, 'Saul', '54321', 'Saul@gmail.com', '3002254785', 3, 'S'),
-(8, 'Matias', '12345', 'matias@gmail.com', '3001234567', 1, 'S');
+INSERT INTO `usuarios` (`us_id`, `us_usuario`, `us_password`, `us_correo`, `us_rol`, `us_activo`) VALUES
+(2, 'Matthew', '12345', 'Matthew@gmail.com', 2, 'S'),
+(3, 'Fernanda', '54321', 'Fernanda@gmail.com', 1, 'S'),
+(4, 'Jorge', '12345', 'jorge@gmail.com', 2, 'S'),
+(5, 'Raul', '54321', 'raul@gmail.com', 2, 'S'),
+(6, 'Ricardo', '12345', 'ricardo@gmail.com', 3, 'S'),
+(7, 'Saul', '54321', 'Saul@gmail.com', 3, 'S'),
+(8, 'Matias', '12345', 'matias@gmail.com', 1, 'S'),
+(10, 'mal', '123456', 'malis@gmail.com', 2, 'S');
 
 --
 -- Índices para tablas volcadas
@@ -266,7 +269,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `contactenos`
 --
 ALTER TABLE `contactenos`
-  MODIFY `co_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `co_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `ofertas`
@@ -278,7 +281,7 @@ ALTER TABLE `ofertas`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `po_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `po_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -290,7 +293,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `us_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `us_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

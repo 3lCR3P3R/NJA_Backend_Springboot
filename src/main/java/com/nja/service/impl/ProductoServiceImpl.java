@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nja.entity.Producto;
+import com.nja.entity.Usuario;
 import com.nja.repository.ProductoRepository;
 import com.nja.service.ProductoService;
 
@@ -31,6 +32,16 @@ public class ProductoServiceImpl implements ProductoService {
 			return new Producto();
 		}
 	}
+	
+	@Override
+	public List<Producto> getProductosUsuario(Usuario usuario) {
+		return this.productoRepository.getByUsuario(usuario);
+	}
+	
+	@Override
+	public Producto getProductoIdUsuario(Integer id, Usuario usuario) {
+		return this.productoRepository.getByIdAndUsuario(id, usuario);
+	}
 
 	@Override
 	public List<Producto> getProductosCategoria(String categoria) {
@@ -46,5 +57,4 @@ public class ProductoServiceImpl implements ProductoService {
 	public Producto editProducto(Producto producto) {
 		return this.productoRepository.save(producto);
 	}
-
 }
