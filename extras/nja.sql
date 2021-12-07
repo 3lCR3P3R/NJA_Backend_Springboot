@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-12-2021 a las 21:04:57
+-- Tiempo de generación: 07-12-2021 a las 17:01:00
 -- Versión del servidor: 10.1.40-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -133,11 +133,11 @@ INSERT INTO `ofertas` (`of_id`, `po_id`, `of_descuento`, `of_precio_descuento`, 
 CREATE TABLE `productos` (
   `po_id` int(11) NOT NULL,
   `us_id` int(11) NOT NULL,
-  `po_nombre` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `po_marca` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'NJA',
-  `po_color` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Negro',
+  `po_nombre` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `po_marca` varchar(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'NJA',
+  `po_color` varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Negro',
   `po_precio` double NOT NULL DEFAULT '10',
-  `po_categoria` varchar(80) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Camisa',
+  `po_categoria` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Camisa',
   `po_cantidad` int(2) NOT NULL DEFAULT '1',
   `po_imagen` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'default.jpg',
   `po_descripcion` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -194,12 +194,12 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`us_id`, `us_usuario`, `us_password`, `us_correo`, `us_rol`, `us_activo`) VALUES
-(2, 'Matthew', '12345', 'Matthew@gmail.com', 2, 'S'),
-(3, 'Fernanda', '54321', 'Fernanda@gmail.com', 1, 'S'),
+(2, 'Matthew', '12345', 'matthew@gmail.com', 2, 'S'),
+(3, 'Fernanda', '54321', 'fernanda@gmail.com', 1, 'S'),
 (4, 'Jorge', '12345', 'jorge@gmail.com', 2, 'S'),
 (5, 'Raul', '54321', 'raul@gmail.com', 2, 'S'),
 (6, 'Ricardo', '12345', 'ricardo@gmail.com', 3, 'S'),
-(7, 'Saul', '54321', 'Saul@gmail.com', 3, 'S'),
+(7, 'Saul', '54321', 'saul@gmail.com', 3, 'S'),
 (8, 'Matias', '12345', 'matias@gmail.com', 1, 'S'),
 (10, 'mal', '123456', 'malis@gmail.com', 2, 'S');
 
@@ -247,7 +247,9 @@ ALTER TABLE `roles`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`us_id`);
+  ADD PRIMARY KEY (`us_id`),
+  ADD UNIQUE KEY `us_correo` (`us_correo`),
+  ADD UNIQUE KEY `us_usuario` (`us_usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -281,7 +283,7 @@ ALTER TABLE `ofertas`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `po_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `po_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`

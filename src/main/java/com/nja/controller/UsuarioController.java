@@ -19,50 +19,53 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
-	
+
 	@Autowired
 	private UsuarioService usuarioService;
-	
+
 	@RequestMapping(value = "/registrar", method = RequestMethod.POST)
 	private Usuario addUsuario(@RequestBody Usuario usuario) {
-		return this.usuarioService.registrar(usuario);
+		try {
+			Usuario u = this.usuarioService.registrar(usuario);
+			return u;
+		} catch (Exception e) {
+			return new Usuario();
+		}
 	}
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	private UsuarioUtil login(@RequestBody Usuario usuario) {
 		Usuario u = this.usuarioService.login(usuario);
-		if(u == null) {
+		if (u == null) {
 			return new UsuarioUtil();
 		} else {
-			String activo = u.getActivo() + ".";  
-			if(activo.equals("S.")) {
+			String activo = u.getActivo() + ".";
+			if (activo.equals("S.")) {
 				UsuarioUtil usuarioUtil = new UsuarioUtil();
-				
+
 				usuarioUtil.setId(u.getId());
 				usuarioUtil.setUsuario(u.getUsuario());
 				usuarioUtil.setCorreo(u.getCorreo());
 				usuarioUtil.setRol(u.getRol());
-				
-				
+
 				long tiempo = System.currentTimeMillis();
 				String token = Jwts.builder()
-						           .signWith(SignatureAlgorithm.HS256, RequestFilter.KEY)
-						           .setSubject(u.getUsuario())
-						           .setIssuedAt(new Date(tiempo))
-						           .setExpiration(new Date(tiempo + 900000))
-						           .claim("username", u.getUsuario())
-						           .claim("correo", u.getCorreo())
-						           .claim("id", u.getId())
-						           .compact();
-						           
-			
+				           .signWith(SignatureAlgorithm.HS256, RequestFilter.KEY)
+				           .setSubject(u.getUsuario())
+				           .setIssuedAt(new Date(tiempo))
+				           .setExpiration(new Date(tiempo + 900000))
+				           .claim("username", u.getUsuario())
+				           .claim("correo", u.getCorreo())
+				           .claim("id", u.getId())
+				           .compact();
+
 				usuarioUtil.setToken(token);
 				return usuarioUtil;
-				
-			} else {
-				return new UsuarioUtil();
+
 			}
-		} 
+
+			return new UsuarioUtil();
+		}
 	}
 
 }
